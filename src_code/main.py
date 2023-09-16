@@ -13,7 +13,7 @@ def main():
 
     #load data
     logging.info("LOADING DATA...")
-    df = pd.read_csv(r"D:\HK4\DS102-machine-learning\src_code\data\data.csv")
+    df = pd.read_csv("data/data.csv")
     data = load_data(df)
 
     #init model
