@@ -57,8 +57,9 @@ class MyEnsembleModel:
 
     def lgbm_xg(self):
         kf = KFold(n_splits=5, shuffle=True)
+        pred_scores = []
 
-        for i, (train_index, val_index) in enumerate(kf.split(self.X, self.y)):
+        for _, (train_index, val_index) in enumerate(kf.split(self.X, self.y)):
             X_train, X_val = self.X[train_index], self.X[val_index]
             y_train, y_val = self.y[train_index], self.y[val_index]
         
