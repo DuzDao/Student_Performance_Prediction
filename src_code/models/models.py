@@ -21,7 +21,7 @@ class MyEnsembleModel:
         return r2(yVal, pred), mse(yVal, pred)
 
     def lgbm_dtr(self):
-        X_train, X_val, y_train, y_val = self.X[:800], self.X[800:], self.y[:200], self.y[200:]
+        X_train, X_val, y_train, y_val = self.X[:800], self.X[800:], self.y[:800], self.y[800:]
         self.dtr.fit(X_train, y_train)
         dtr_pred = self.dtr.predict(X_val)
         dtr_r2, dtr_mse = self.evaluate(y_val, dtr_pred)
@@ -56,4 +56,18 @@ class MyEnsembleModel:
         return pred_scores, np.mean(pred_scores)
 
     def lgbm_xg(self):
-        ...
+        kf = KFold(n_splits=5, shuffle=True)
+
+        for i, (train_index, val_index) in enumerate(kf.split(self.X, self.y)):
+            X_train, X_val = self.X[train_index], self.X[val_index]
+            y_train, y_val = self.y[train_index], self.y[val_index]
+        
+            self.xg.fit(X_train, y_train)
+            self.lgm.fit(X_train, y_train)
+        
+            ensemble_pred = (self.xg.predict(X_val) + self.lgm.predict(X_val)) / 2
+        
+            score = r2(y_val, ensemble_pred)
+            pred_scores.append(score)
+
+        return pred_scores, np.mean(pred_scores)
