@@ -1,7 +1,8 @@
 #### Table of contents
   1. [Introduction](#intro)
   2. [Data Sample](#sample)
-  3. [Members](#mem)
+  3. [Results](#res)
+  4. [Members](#mem)
 
 Course Project [Course Name: Machine Learning]
 
@@ -12,6 +13,26 @@ Models we used:
   - Decision Tree Regressor + LightGBM
   - Random Forest Regressor + Gradient Boosting Regressor
   - LightGBM + xgBoost
+
+# <a name="res"></a> Results
+
+- LightGBM + Decision Tree Regressor
+  ```python
+    python "main.py" --model "lgbm+dtr"
+  ```
+![image](https://github.com/DuzDao/Student_Performance_Prediction/assets/95222109/f8a86f86-fbd9-4a6c-b33d-92cc705c1f12)
+
+- Gradient Boosting Regressor + Random Forest Regressor
+  ```python
+    python "main.py" --model "gbr+rfr"
+  ```
+![image](https://github.com/DuzDao/Student_Performance_Prediction/assets/95222109/1ae22f34-3c96-485f-b1a0-9a82074757f6)
+
+- LightGBM + xgBoost
+  ```python
+    python "main.py" --model "lgbm+xg"
+  ```
+![image](https://github.com/DuzDao/Student_Performance_Prediction/assets/95222109/544aa62d-1ee4-4b47-bdca-aeca0b23c9ad)
 
 # <a name="sample"></a> Data Sample
 - Dataset Description is available on [Kaggle](https://www.kaggle.com/datasets/rkiattisak/student-performance-in-mathematics). </br>
